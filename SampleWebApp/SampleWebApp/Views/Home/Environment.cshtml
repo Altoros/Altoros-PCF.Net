@@ -1,0 +1,23 @@
+﻿@using System.Collections
+
+@{
+    ViewBag.Title = "title";
+    IDictionary environmentVariables = Environment.GetEnvironmentVariables();
+    string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+}
+
+<h2>Environment Variables</h2>
+<div class="environment">
+    <div class="item">
+        <div class="key">Connection String</div>
+        <div class="value">@connectionString</div>
+    </div>
+        @foreach (DictionaryEntry entry in environmentVariables)
+        {
+            <div class="item">
+                <div class="key">@entry.Key</div>
+                <div class="value">@entry.Value</div>
+            </div>
+        }
+
+</div>
