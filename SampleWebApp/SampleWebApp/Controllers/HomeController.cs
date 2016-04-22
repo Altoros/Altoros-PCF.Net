@@ -27,10 +27,16 @@ namespace SampleWebApp.Controllers
             return View();
         }
 
-
         public ActionResult Environment()
         {
             ViewBag.Message = "Your environment page.";
+
+            return View();
+        }
+
+        public ActionResult Session()
+        {
+            ViewBag.Message = "Your session page.";
 
             return View();
         }

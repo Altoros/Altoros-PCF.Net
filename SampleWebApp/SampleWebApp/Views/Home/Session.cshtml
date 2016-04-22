@@ -1,0 +1,49 @@
+﻿@using System.Collections
+
+@{
+    Layout = null;
+    IDictionary environmentVariables = Environment.GetEnvironmentVariables();
+
+    var instanceIndex = environmentVariables["CF_INSTANCE_INDEX"];
+
+    var list = new List<string>();
+
+    if (Session["SessionTest"] == null)
+    {
+        list.Add($"{instanceIndex}: {DateTime.Now}");
+
+
+        Session.Add("SessionTest", list);
+    }
+    else
+    {
+        list = Session["SessionTest"] as List<string>;
+
+        if (list != null)
+        {
+            list.Add($"{instanceIndex}: {DateTime.Now}");
+            Session["SessionTest"] = list;
+        }
+        else
+        {
+            list = new List<string>();
+        }
+    }
+
+}
+<h2>Session test</h2>
+<div class="environment">
+
+    <div class="item">
+        <div class="key">Instance Index</div>
+        <div class="value">@instanceIndex</div>
+    </div>
+    @foreach (var entry in list)
+    {
+        <div class="item">
+            <div class="key"></div>
+            <div class="value">@entry</div>
+        </div>
+    }
+
+</div>

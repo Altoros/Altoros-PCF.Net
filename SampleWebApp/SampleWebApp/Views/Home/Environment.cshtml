@@ -4,6 +4,7 @@
     ViewBag.Title = "title";
     IDictionary environmentVariables = Environment.GetEnvironmentVariables();
     string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+    string redisConnectionString = Startup.GetRedisConnectionString();
 }
 
 <h2>Environment Variables</h2>
@@ -11,6 +12,10 @@
     <div class="item">
         <div class="key">Connection String</div>
         <div class="value">@connectionString</div>
+    </div>
+    <div class="item">
+        <div class="key">Redis Connection String</div>
+        <div class="value">@redisConnectionString</div>
     </div>
         @foreach (DictionaryEntry entry in environmentVariables)
         {
